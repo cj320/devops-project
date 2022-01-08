@@ -20,7 +20,7 @@ For your portfolio project, you will design and implement the back end for a web
 
 1. What are the various features you would like your project to offer?
 
-    <span style="color:forestgreen">One of the features of my project will be extracting posts from reddit via Reddit's PRAW Python library, then running queries to find the post with the highest vote count, and also displaying posts to end users via the project's API.</span>
+One of the features of my project will be extracting posts from reddit via Reddit's [PRAW](https://praw.readthedocs.io/en/stable/) Python library, then running queries to find the post with the highest vote count, and also displaying posts to end users via the project's API.
 
 2. What are the API endpoints that you would need to set up for each feature? List them along with the respective HTTP verb, endpoint URL, and any special details (query parameters, request bodies, headers).
 
