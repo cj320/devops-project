@@ -1,0 +1,5 @@
+reddit/__pycache__/
+venv
+app/__pycache__/
+.env
+reddit/.env
