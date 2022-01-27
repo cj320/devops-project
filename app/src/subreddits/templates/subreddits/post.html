@@ -1,0 +1,51 @@
+{% extends 'subreddits/base.html'%}
+{% load static %}
+{% block content %}
+  <div class = "container">
+    <div class = "text-center container>"
+      <br>
+      <h2 class = "text-center">Search your favorite subreddits</h2> 
+      <a class = "btn btn-primary" href="../">Index</a>
+      <a class = "btn btn-primary" href="../../">Add Another Subreddit</a>
+    </br>
+      </div>
+    <br><br>
+    <div class="row">
+      {% for post in all_posts %}
+        <div class="col-md-8 col-sm-7 col-lg-5">
+          <div class="card">
+            <div class="card" style="width: 20rem;">
+            </div>
+                <img class="card-img-top" src={{ post.url }} alt="not found" onerror="this.src='{{ post.subreddit.url }}'";/>
+                <div class="card-body text-center">
+              <p class="card-title"><b>{{ post.title }}</b></p>
+              <hr>
+              <p class="card-text text-c">
+               <b>Score:</b> {{ post.score }}
+               <b>Created</b> {{ post.created}}
+              </p>
+              <p class="card-text text-c">
+                <b>User:</b> {{ post.user }}
+               </p>
+              <a href={{ post.permalink }}
+              ><input
+                type="submit"
+                value="View Post"
+                class="btn btn-danger btn-sm"
+                type="button"
+            /></a>
+            <a href={{ post.url }}
+              ><input
+                type="submit"
+                value="View Source"
+                class="btn btn-danger btn-sm"
+                type="button"
+            /></a>
+            </div>
+          </div>
+          <br><br><br>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

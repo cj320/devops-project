@@ -1,0 +1,57 @@
+---
+version: "3.8"
+services:
+  web:
+    build: ./src
+    command: >
+      sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./src:/usr/src/app/
+    ports:
+      - 8000:8000
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DATABASE: ${DATABASE}
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      USER_AGENT: ${USER_AGENT}
+      REDIRECT_URI: ${REDIRECT_URI}
+      REFRESH_TOKEN: ${REFRESH_TOKEN}
+      SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - pg
+  pg:
+    container_name: pg_container
+    image: postgres:13.2-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST_AUTH_METHOD: ${POSTGRES_HOST_AUTH_METHOD}
+      DATABASE: ${DATABASE}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/data
+      - ./data/misc/django_init.sql:/docker-entrypoint-initdb.d/1-django-init.sql
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:5.2
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: 5433
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD: "False"
+    ports:
+      - "5433:5433"
+    depends_on:
+      - pg

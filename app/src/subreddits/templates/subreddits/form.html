@@ -1,0 +1,24 @@
+{% extends 'subreddits/base.html'%}
+{% load static %}
+{% block content %}
+  <div class = "container">
+    <div class = "text-center container">
+      <br>
+      <h2 class = "text-center">Store a favorite subreddit to search</h2> 
+      <br>
+      <form action='.' method="POST"> {% csrf_token %}
+          {{ form.as_p}}
+      <!-- <input type = "text" name = {name} placeholder="Search..." class = "text-center"> -->
+      <input type ='submit' value = "Search" class = "btn btn-primary" />
+      <a class = "btn btn-primary" href="/content">Index</a>
+     <!--<button type = "submit" class = "btn-danger btn-sm">SEARCH </button> -->
+      </form>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

@@ -1,5 +1,6 @@
-reddit/__pycache__/
-venv
-app/__pycache__/
+app/.env
+app/.vscode
+app/src/subreddits/__pycache__
 .env
-reddit/.env
+.vscode
+app/src/reddit/__pycache__

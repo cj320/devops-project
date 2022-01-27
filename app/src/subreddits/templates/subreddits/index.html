@@ -1,0 +1,44 @@
+{% extends 'subreddits/base.html'%}
+{% load static %}
+{% block content %}
+  <div class = "container">
+    <div class = "text-center container">
+      <br>
+      <h2 class = "text-center">Search your favorite subreddits</h2> 
+      <br>
+    </div>
+    <div class = "text-center container>"
+      <br>
+      <a class = "btn btn-primary" href="../">Add Another Subreddit</a>
+      <br>
+      </div>
+    <br><br>
+    <div class="row">
+      {% for sub in all_subs %}
+        <div class="col-md-4 col-sm-8 col-lg-4">
+          <div class="card mb-3">
+              <img class="card-img-top" src="{{ sub.url }}" alt="Card image cap">
+            <div class="card-body text-center">
+              <p class="card-title"><b>{{ sub.subreddit }}</b></p>
+              <hr>
+              <p class="card-text">
+                {% if sub.nsfw %}
+                  <p style="background-color:Tomato;"><b>NSFW</b></p>
+                {% endif %}
+                  {{ sub.description }}
+              </p>
+              <a href="{{ sub.id}}"
+              ><input
+                type="submit"
+                value="Show Posts"
+                class="btn btn-danger btn-sm"
+                type="button"
+            /></a>
+            </div>
+          </div>
+          <br><br><br>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
