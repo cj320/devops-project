@@ -2,7 +2,8 @@
 version: "3.8"
 services:
   web:
-    build: ./src
+    #build: ./src
+    image: cj320/reddit-scraper:v1.1
     command: >
       sh -c "python manage.py migrate &&
             python manage.py runserver 0.0.0.0:8000"
@@ -23,6 +24,7 @@ services:
       REDIRECT_URI: ${REDIRECT_URI}
       REFRESH_TOKEN: ${REFRESH_TOKEN}
       SECRET_KEY: ${SECRET_KEY}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
     depends_on:
       - pg
   pg:
