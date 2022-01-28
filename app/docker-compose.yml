@@ -2,8 +2,8 @@
 version: "3.8"
 services:
   web:
-    #build: ./src
-    image: cj320/reddit-scraper:v1.1
+    build: ./src
+    image: ${DOCKER_URI}
     command: >
       sh -c "python manage.py migrate &&
             python manage.py runserver 0.0.0.0:8000"
