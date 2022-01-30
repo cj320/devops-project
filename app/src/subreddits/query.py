@@ -25,4 +25,5 @@ def validate_subreddit(sub):
         return sub
     except ResponseException:
         print("This subreddit does not exist")
+        return False
 
